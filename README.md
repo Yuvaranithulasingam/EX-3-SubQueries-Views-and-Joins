@@ -1,4 +1,5 @@
 # EX 3 SubQueries, Views and Joins 
+
 ## AIM:
 To create a manager database and execute DML queries using SQL
 
@@ -79,7 +80,7 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 ```
 select ename from emp where sal>(select sal from emp where empno=7566);
 ```
-### OUTPUT:
+#### OUTPUT:
 ![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/b2c3aa1e-96c4-4a85-9878-02d4066e8b26)
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
@@ -117,11 +118,12 @@ select ename,empno,sal from empv30;
 ![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/4dcada7e-12da-40c2-8740-6e4543402bf7)
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```
+update empv5 set sal=sal+(sal*0.1) where job='clerk';
+```
+#### OUTPUT:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/a6810574-c1d8-4c0e-8d45-e63d6739b99c)
 
 ## Create a Customer1 Table
 ```sql
@@ -138,6 +140,9 @@ INSERT INTO Customer1 (customer_id, cust_name, city, grade, salesman_id) VALUES(
 INSERT INTO Customer1 (customer_id, cust_name, city, grade, salesman_id) VALUES(3003, 'Jozy Altidor', 'Moscow', 200, 5007);
 INSERT INTO Customer1 (customer_id, cust_name, city, grade, salesman_id) VALUES(3001, 'Brad Guzan', 'London', NULL, 5005);
 ```
+## OUTPUT:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/4086faa0-a91c-4c62-85e0-7f138180e27e)
+
 ## Create a Salesperson1 table
 ```sql
 CREATE TABLE Salesman1 (salesman_id INT,name VARCHAR(20),city VARCHAR(20),commission DECIMAL(4,2));
@@ -151,30 +156,47 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5006, 'Mc Lyo
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5007, 'Paul Adam', 'Rome', 0.13);
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson Hen', 'San Jose', 0.12);
 ```
+## OUTPUT:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/398b0d5c-5d99-4946-bfd3-da321e85116c)
+
 ### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
 
 ### QUERY:
-
+```
+SELECT salesman1.name AS "salesman",customer1.cust_name AS "customername", customer1.city FROM salesman1,customer1 WHERE salesman1.city=customer1.city;
+```
 ### OUTPUT:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/fbb82a6e-4215-4f36-a41e-7de2de273615)
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
-
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```
+select customer1.cust_name as "CUSTOMER NAME" , customer1.city as "CUSTOMER CITY" , salesman1.name as "SALESMAN NAME" , salesman1.commission as "COMMISSION" from salesman1 INNER JOIN customer1 on salesman1.salesman_id=customer1.salesman_id where salesman1.commission > 0.13;
+```
+#### OUTPUT:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/b40346e9-f258-4de2-9582-a4dae48082dc)
 
 ### Q9) Perform Natural join on both tables
-
-### QUERY:
-
-
-### OUTPUT:
+#### QUERY:
+```
+ select * from customer1 NATURAL JOIN salesman1;
+```
+#### OUTPUT:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/b93ae6a8-967f-4a8d-a880-ddeb5b948feb)
 
 ### Q10) Perform Left and right join on both tables
+#### QUERY FOR LEFT JOIN:
+```
+select * from salesman1 LEFT JOIN customer1 on salesman1.salesman_id=customer1.salesman_id;
+```
+#### OUTPUT FOR LEFT JOIN:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/090bddb0-2271-4056-99c3-32c8c4a32ae4)
+#### QUERY FOR RIGHT JOIN:
+```
+select * from salesman1 RIGHT JOIN customer1 on salesman1.salesman_id=customer1.salesman_id;
+```
+#### OUTPUT FOR RIGHT JOIN:
+![image](https://github.com/Yuvaranithulasingam/EX-3-SubQueries-Views-and-Joins/assets/121418522/0f85e4d3-6d60-4e11-b7b0-32a939674d95)
 
-### QUERY:
-
-
-### OUTPUT:
+## RESULT:
+The program has been executed successfully for the above queries.
